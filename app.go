@@ -9,8 +9,13 @@ import (
 	
 	"gopkg.in/mgo.v2/bson"
 	"github.com/gorilla/mux"
-	
+	. "github.com/merrilj/movies-api/config"
+	. "github.com/merrilj/movies-api/dao"
+	. "github.com/merrilj/movies-api/models"
 )
+
+var config = Config{}
+var dao = MoviesDAO{}
 
 func AllMovies(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not yet implemented")
@@ -53,6 +58,14 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.WriteHeader(code)
 	w.Write(response)
 }
+
+// func init() {
+// 	config.Read()
+
+// 	dao.Server = config.Server
+// 	dao.Database = config.Database
+// 	dao.Connect()
+// }
 
 func main() {
 	r := mux.NewRouter()
